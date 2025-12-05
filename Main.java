@@ -15,6 +15,7 @@ public class Main {
 //inputs
         char player = 'X';
         boolean gameOver = false;
+        int turns =0;
         Scanner sc = new Scanner(System.in);
         System.out.println("Initial Board : \n");
         printboard(board);
@@ -23,12 +24,23 @@ public class Main {
             System.out.println("Player: "+player+", Enter : ");
             System.out.print("\tRow(0~2): ");
             int row = sc.nextInt();
+            while(!(row>=0 && row <=2)){
+                System.out.println("\tInvalid row,try again !!!");
+                System.out.print("\tRow(0~2): ");
+                row = sc.nextInt();
+            }
             System.out.print("\tCol(0~2): " );
             int col = sc.nextInt();
+            while(!(col>=0 && col<=2)){
+                System.out.println("\tInvalid Col,try again !!!");
+                System.out.print("\tCol(0~2): ");
+                col = sc.nextInt();
+            }
             System.out.println();
 
             if (board[row][col]==' '){
                 board[row][col]=player;
+                turns++;
                 gameOver = isgameOver(board,player);
                 if (gameOver){
                     System.out.println("Player :"+player+" Won !!!");
@@ -41,6 +53,12 @@ public class Main {
             }
 
             printboard(board);
+            if(isDraw(turns)) {
+                System.out.println("Game Draw !!! :(");
+                break;
+
+            }
+
         }
     }
 //checking winning conditions
@@ -93,6 +111,15 @@ public class Main {
 
         }
 
+    }
+
+    private static boolean isDraw(int turns){
+        if (turns ==9) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }
