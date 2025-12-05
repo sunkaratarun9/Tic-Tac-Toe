@@ -75,7 +75,7 @@ public class Main {
 //print board
     private static void printboard(char[][] board) {
         for(int row=0;row<3;row++ ){
-            if(row ==0) System.out.println("  0  1  2");
+            if(row ==0) System.out.println("   0  1  2");
             System.out.println("  ----------");
             for(int col=0; col<3; col++) {
                 if(col==0){
