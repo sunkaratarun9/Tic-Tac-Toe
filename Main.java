@@ -114,12 +114,7 @@ public class Main {
     }
 
     private static boolean isDraw(int turns){
-        if (turns ==9) {
-            return true;
-        }
-        else{
-            return false;
-        }
+        return turns ==9;
     }
 
 }
