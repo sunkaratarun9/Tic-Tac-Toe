@@ -3,24 +3,24 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-//        System.out.println("Hello from Tic-Tac-Toe Folder!!! ");
+    //    System.out.println("Hello from Tic-Tac-Toe Folder!!! ");
 
-// initial board
+        // initial board
         char [][] board = new char[3][3];
         for(int row=0;row<3;row++ ){
             for(int col=0; col<3; col++) {
                 board[row][col]=' ';
             }
         }
-//inputs
+        //inputs
         char player = 'X';
         boolean gameOver = false;
         int turns =0;
         Scanner sc = new Scanner(System.in);
         System.out.println("Initial Board : \n");
-        printboard(board);
+        printBoard(board);
         while(!gameOver){
-//            printboard(board);
+            // printboard(board);
             System.out.println("Player: "+player+", Enter : ");
             System.out.print("\tRow(0~2): ");
             int row = sc.nextInt();
@@ -41,10 +41,13 @@ public class Main {
             if (board[row][col]==' '){
                 board[row][col]=player;
                 turns++;
-                gameOver = isgameOver(board,player);
+                gameOver = isGameOver(board,player);
                 if (gameOver){
                     System.out.println("Player :"+player+" Won !!!");
-                }else{
+                } else if (isDraw(turns)) {
+                    System.out.println("Game Draw !!! :(");
+                    gameOver=true;
+                } else{
                     player = player=='X'?'O':'X';
                 }
             }
@@ -52,17 +55,13 @@ public class Main {
                 System.out.println("Enter Valid Input !!!, try again!");
             }
 
-            printboard(board);
-            if(isDraw(turns)) {
-                System.out.println("Game Draw !!! :(");
-                break;
-
+            printBoard(board);
             }
 
         }
-    }
-//checking winning conditions
-    private static boolean isgameOver(char[][] board, char player) {
+
+    // checking winning conditions
+    private static boolean isGameOver(char[][] board, char player) {
         //checking the rows
         for(char[] row : board){
             if(row[0]!=' ' && row[0]==row[1] && row[1]==row[2]){
@@ -90,8 +89,8 @@ public class Main {
         }
         return false;
     }
-//print board
-    private static void printboard(char[][] board) {
+    //print board
+    private static void printBoard(char[][] board) {
         for(int row=0;row<3;row++ ){
             if(row ==0) System.out.println("   0  1  2");
             System.out.println("  ----------");
@@ -114,7 +113,7 @@ public class Main {
     }
 
     private static boolean isDraw(int turns){
-        return turns ==9;
+        return turns==9;
     }
-
+    
 }
